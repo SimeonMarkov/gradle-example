@@ -1,0 +1,19 @@
+spring:
+  profiles: dev
+
+server:
+  port: 8081
+
+nuts:
+  value: deezNuutsDev
+
+---
+
+spring:
+  profiles: prod
+
+server:
+  port: 8082
+
+nuts:
+  value: deezNuutsProd
