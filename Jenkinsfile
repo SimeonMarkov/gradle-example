@@ -1,15 +1,18 @@
 node {
-   // Mark the code checkout 'stage'....
-   stage "Checkout"
+    def server = Artifactory.server 'Artifactory-Kruttik-Local'
+    def rtGradle = Artifactory.newGradleBuild()
 
-   // Checkout code from repository
-   checkout scm
+    stage 'Build'
+        checkout scm
 
-   def workspace = pwd()
-   echo "Workspace is ${workspace}"
+    stage 'Artifactory configuration'
+        rtGradle.deployer repo:'gradle-dev-local', server: server
+        rtGradle.resolver repo:'remote-repos', server: server
+        rtGradle.useWrapper = true
 
-   // Mark the code build 'stage'....
-   stage "Build"
-   // Run the gradle build
-   sh " bash cd ../../simeon_markov/IdeaProjects/gradle-example/; pwd"
+    stage 'Exec Gradle'
+        def buildInfo = rtGradle.run rootDir: "./", buildFile: 'build.gradle', tasks: 'clean build artifactoryPublish'
+
+    stage 'Publish build info'
+        server.publishBuildInfo buildInfo
 }
