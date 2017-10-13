@@ -11,5 +11,5 @@ node {
    // Mark the code build 'stage'....
    stage "Build"
    // Run the gradle build
-   sh " bash cd ../../simeon_markov/IdeaProjects/gradle-example/; pwd"
+   sh " ./gradlew clean build"
 }
