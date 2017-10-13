@@ -8,7 +8,7 @@ node {
    // Mark the code build 'stage'....
    stage "Build"
    // Run the gradle build
-   dir ('/IdeaProjects/gradle-example') {
+   dir ('~/IdeaProjects/gradle-example') {
         sh "./gradlew clean build"
    }
 }
