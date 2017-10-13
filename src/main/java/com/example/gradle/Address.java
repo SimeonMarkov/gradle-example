@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
+// model for addresses
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
