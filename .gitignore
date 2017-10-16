@@ -1,6 +1,5 @@
 .gradle
 /build/
-gradlew
 *.bat
 
 ### STS ###
