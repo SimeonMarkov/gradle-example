@@ -1,27 +1,24 @@
 package com.example.gradle;
 
-import lombok.AllArgsConstructor;
+import com.example.gradle.converter.EmbeddedTypeConverter;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.function.Consumer;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Customer {
-    private String firstName;
-    private String lastName;
-    private Address deliveryAddress;
-    private InvoiceAddress invoiceAddress;
 
-    public Customer convert(String value, Consumer<String> supplier) {
-        if (value != null) {
-            supplier.accept(value);
-        } else {
-            supplier.accept("default street");
-        }
-        System.out.println("Now invoice address is:" + invoiceAddress);
-        return this;
-    }
+    @Id
+    private String id;
+    @Column
+    private String firstName;
+    @Column
+    private String lastName;
+    @Column
+    @Convert(converter = EmbeddedTypeConverter.class)
+    private Address address;
 }

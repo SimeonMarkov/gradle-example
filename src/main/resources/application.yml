@@ -1,19 +1,12 @@
 spring:
-  profiles: dev
-
-server:
-  port: 8081
-
-nuts:
-  value: deezNuutsDev
-
----
-
-spring:
-  profiles: prod
-
-server:
-  port: 8082
-
-nuts:
-  value: deezNuutsProd
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mydb
+    username: postgres
+    password: postgres
+  application:
+    name: gradle-example
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.PostgreSQL82Dialect
