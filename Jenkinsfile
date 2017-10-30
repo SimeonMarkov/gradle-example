@@ -8,6 +8,6 @@ node {
    // Mark the code build 'stage'....
    stage('Build') {
         // Run the gradle build
-        bat "./gradlew clean build"
+        bat "gradle clean build"
    }
 }
