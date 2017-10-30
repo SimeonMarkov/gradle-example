@@ -5,8 +5,6 @@ import com.example.gradle.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 public class CustomerService {
 
@@ -18,7 +16,6 @@ public class CustomerService {
     }
 
     public void save(Customer customer) {
-        customer.setId(UUID.randomUUID().toString());
         customerRepository.save(customer);
     }
 }
