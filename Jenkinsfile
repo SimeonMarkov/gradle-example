@@ -9,4 +9,8 @@ node {
         // Run the gradle build
         bat "gradle clean build"
    }
+
+   stage('Docker Build Push') {
+
+   }
 }

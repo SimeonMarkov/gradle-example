@@ -1,14 +1,12 @@
 package com.example.gradle;
 
-import com.example.gradle.converter.EmbeddedTypeConverter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -16,15 +14,32 @@ import javax.persistence.Id;
 public class Customer {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    @JsonIgnore
+    private Integer id;
+    @Column
+    @NotBlank
+    @NonNull
+    private String customerName;
     @Column
     @NonNull
-    private String firstName;
+    @NotBlank
+    private String contactName;
     @Column
+    @NotBlank
     @NonNull
-    private String lastName;
+    private String address;
     @Column
-    @Convert(converter = EmbeddedTypeConverter.class)
+    @NotBlank
     @NonNull
-    private Address address;
+    private String city;
+    @Column
+    @NotBlank
+    @NonNull
+    private String postalCode;
+    @Column
+    @NotBlank
+    @NonNull
+    private String country;
 }
